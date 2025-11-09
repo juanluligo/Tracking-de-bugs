@@ -11,15 +11,20 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1> Sistema de Tracking de Bugs</h1>
-            <p class="subtitle">Análisis Estadístico: Factores que Influyen en el Tiempo de Resolución</p>
-            <p class="authors">Juan Camilo Luligo - Eduardo Galvis | Universidad Autónoma del Cauca</p>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Sistema de Tracking de Bugs</h1>
+                    <p class="subtitle">Análisis Estadístico: Factores que Influyen en el Tiempo de Resolución</p>
+                    <p class="authors">Juan Camilo Luligo - Eduardo Galvis | Universidad Autónoma del Cauca</p>
+                </div>
+                <img src="logo-quimera-transparente-200x140.png" alt="logo uniautonoma" class="logo">
+            </div>
         </header>
 
         <!-- Cronómetro -->
         <section class="timer-section">
             <div class="timer-display">
-                <h2>⏱️ Cronómetro</h2>
+                <h2>⏱ Cronómetro</h2>
                 <div class="time" id="timeDisplay">00:00:00</div>
                 <div class="timer-controls">
                     <button id="startBtn" class="btn btn-success">▶️ Iniciar</button>
@@ -34,12 +39,12 @@
 
         <!-- Formulario de Registro -->
         <section class="form-section" id="formSection" style="display: none;">
-            <h2>📝 Registro de Bug</h2>
+            <h2> Registro de Bug</h2>
             <form id="bugForm">
                 <div class="form-grid">
                     <!-- Tiempo de resolución (automático) -->
                     <div class="form-group full-width">
-                        <label>⏱️ Tiempo de Resolución</label>
+                        <label>⏱ Tiempo de Resolución</label>
                         <input type="text" id="resolutionTime" readonly class="readonly-input">
                     </div>
 
@@ -57,7 +62,7 @@
 
                     <!-- Complejidad Percibida -->
                     <div class="form-group">
-                        <label for="complexity">📊 Complejidad Percibida (1-5) *</label>
+                        <label for="complexity"> Complejidad Percibida (1-5) *</label>
                         <select id="complexity" required>
                             <option value="">Seleccionar...</option>
                             <option value="1">1 - Muy Fácil</option>
@@ -70,7 +75,7 @@
 
                     <!-- Consulta Documentación -->
                     <div class="form-group">
-                        <label for="documentation">📚 ¿Consultó Documentación? *</label>
+                        <label for="documentation"> ¿Consultó Documentación? *</label>
                         <select id="documentation" required>
                             <option value="">Seleccionar...</option>
                             <option value="Si">Sí</option>
@@ -109,7 +114,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">💾 Guardar Bug</button>
+                    <button type="submit" class="btn btn-primary"> Guardar Bug</button>
                     <button type="button" id="cancelBtn" class="btn btn-secondary">❌ Cancelar</button>
                 </div>
             </form>
@@ -236,6 +241,7 @@
             <div class="table-container">
                 <h3> Tabla de Datos Registrados</h3>
                 <div class="table-actions">
+                    <button id="generateTestData" class="btn btn-success">Generar Datos de Prueba</button>
                     <button id="exportCSV" class="btn btn-export"> Exportar CSV</button>
                     <button id="exportJSON" class="btn btn-export"> Exportar JSON</button>
                     <button id="clearData" class="btn btn-danger"> Limpiar Datos</button>

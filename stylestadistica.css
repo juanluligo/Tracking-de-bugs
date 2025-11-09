@@ -67,6 +67,25 @@ body {
     box-shadow: var(--shadow-md);
 }
 
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+}
+
+.header .logo {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.header-text {
+    flex: 1;
+}
+
 .header h1 {
     color: var(--text-primary);
     font-size: 2rem;
@@ -585,6 +604,15 @@ tbody tr:last-child td {
 
     .header {
         padding: var(--spacing-xl);
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header .logo {
+        width: 120px;
     }
 
     .header h1 {

@@ -33,6 +33,7 @@ const progressSpan = document.getElementById('progress');
 const exportCSVBtn = document.getElementById('exportCSV');
 const exportJSONBtn = document.getElementById('exportJSON');
 const clearDataBtn = document.getElementById('clearData');
+const generateTestDataBtn = document.getElementById('generateTestData');
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
@@ -769,6 +770,7 @@ function calculateAverageByCategory(category) {
 exportCSVBtn.addEventListener('click', exportToCSV);
 exportJSONBtn.addEventListener('click', exportToJSON);
 clearDataBtn.addEventListener('click', clearAllData);
+generateTestDataBtn.addEventListener('click', generateTestData);
 
 function exportToCSV() {
     if (bugs.length === 0) {
@@ -822,7 +824,7 @@ function downloadFile(content, filename, type) {
 }
 
 function clearAllData() {
-    if (confirm('⚠️ ¿Está seguro de eliminar TODOS los datos?\n\nEsta acción no se puede deshacer.')) {
+    if (confirm(' ¿Está seguro de eliminar TODOS los datos?\n\nEsta acción no se puede deshacer.')) {
         if (confirm('Confirmación final: Se eliminarán ' + bugs.length + ' registros.')) {
             bugs = [];
             saveBugsToStorage();
@@ -848,3 +850,169 @@ document.getElementById('timeOfDay').addEventListener('focus', function() {
         }
     }
 });
+
+// GENERACIÓN DE DATOS DE PRUEBA 
+
+// Funciones auxiliares para generar datos aleatorios (sin dependencias externas)
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomFloat(min, max, decimals = 2) {
+    return parseFloat((Math.random() * (max - min) + min).toFixed(decimals));
+}
+
+function randomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+function generateTestData() {
+    const count = prompt('¿Cuántos bugs de prueba deseas generar? (Recomendado: 30-50)', '35');
+    
+    if (count === null) return; // Cancelado
+    
+    const numBugs = parseInt(count);
+    
+    if (isNaN(numBugs) || numBugs <= 0) {
+        alert(' Por favor ingresa un número válido mayor a 0');
+        return;
+    }
+    
+    if (numBugs > 100) {
+        alert(' El máximo recomendado es 100 bugs para mantener el rendimiento');
+        return;
+    }
+    
+    if (!confirm(`Se generarán ${numBugs} bugs de prueba con datos realistas\n\n¿Continuar?`)) {
+        return;
+    }
+    
+    const bugTypes = ['Frontend', 'Backend', 'Logica', 'BaseDatos'];
+    const complexities = [1, 2, 3, 4, 5];
+    const documentationOptions = ['Si', 'No'];
+    const timeOfDayOptions = ['Mañana', 'Tarde', 'Noche'];
+    const projects = ['amigo-secreto', 'sistema-registro', 'VozSegura', 'tareadiarias'];
+    
+    // Descripciones realistas por tipo de bug
+    const bugDescriptions = {
+        'Frontend': [
+            'Error en el renderizado del componente modal',
+            'Los estilos CSS no se aplican correctamente en mobile',
+            'Botón de submit no responde al primer click',
+            'Problema con el scroll infinito en la tabla',
+            'Icono no se muestra correctamente en Safari',
+            'Animación CSS causa parpadeo en Chrome',
+            'Dropdown menu no se cierra al hacer click fuera',
+            'Responsive design roto en tablets',
+            'Imagen no se carga en resoluciones altas',
+            'Formulario no valida campos antes de enviar'
+        ],
+        'Backend': [
+            'API endpoint retorna 500 cuando el payload está vacío',
+            'Error en la autenticación con JWT expirado',
+            'Query a la base de datos tarda más de 5 segundos',
+            'Middleware de validación rechaza datos válidos',
+            'Error al procesar archivos mayores a 10MB',
+            'Rate limiting no funciona correctamente',
+            'Sesión expira antes de tiempo configurado',
+            'CORS bloqueando peticiones del frontend',
+            'Endpoint no maneja correctamente errores 404',
+            'WebSocket se desconecta aleatoriamente'
+        ],
+        'Logica': [
+            'Algoritmo de ordenamiento no maneja casos edge',
+            'Cálculo de porcentaje da resultado incorrecto',
+            'Validación de formulario permite datos inválidos',
+            'Loop infinito cuando el array está vacío',
+            'Condición if-else no cubre todos los casos',
+            'Función recursiva causa stack overflow',
+            'Lógica de negocio incorrecta en descuentos',
+            'Filtro de búsqueda no encuentra coincidencias parciales',
+            'Comparación de fechas ignora zona horaria',
+            'Estado de la aplicación no se sincroniza correctamente'
+        ],
+        'BaseDatos': [
+            'Foreign key constraint violation al eliminar',
+            'Query con JOIN retorna duplicados',
+            'Índice faltante causa consultas lentas',
+            'Migración falla por tipo de dato incompatible',
+            'Transacción no hace rollback correctamente',
+            'Deadlock en operaciones concurrentes',
+            'Datos inconsistentes después de actualización masiva',
+            'Query N+1 causa problemas de rendimiento',
+            'Conexión a BD se cierra inesperadamente',
+            'Backup falla por falta de espacio en disco'
+        ]
+    };
+    
+    const generatedBugs = [];
+    const now = Date.now();
+    
+    for (let i = 0; i < numBugs; i++) {
+        // Generar complejidad con distribución más realista (más bugs en complejidad 2-4)
+        let complexity;
+        const rand = Math.random();
+        if (rand < 0.1) complexity = 1;
+        else if (rand < 0.35) complexity = 2;
+        else if (rand < 0.65) complexity = 3;
+        else if (rand < 0.85) complexity = 4;
+        else complexity = 5;
+        
+        // Tiempos realistas basados en complejidad
+        let baseTime;
+        switch(complexity) {
+            case 1: baseTime = randomFloat(5, 15); break;
+            case 2: baseTime = randomFloat(10, 25); break;
+            case 3: baseTime = randomFloat(20, 45); break;
+            case 4: baseTime = randomFloat(35, 70); break;
+            case 5: baseTime = randomFloat(60, 120); break;
+        }
+        
+        const type = randomElement(bugTypes);
+        
+        // 60% consultó documentación (más realista)
+        const documentation = Math.random() < 0.6 ? 'Si' : 'No';
+        
+        // Si consultó documentación, reducir tiempo un poco
+        const docFactor = documentation === 'Si' ? randomFloat(0.80, 0.95) : randomFloat(1.0, 1.15);
+        const timeMinutes = parseFloat((baseTime * docFactor).toFixed(2));
+        
+        const timeOfDay = randomElement(timeOfDayOptions);
+        const project = randomElement(projects);
+        
+        // Generar timestamp realista (últimos 30 días)
+        const daysAgo = randomInt(0, 30);
+        const hoursAgo = randomInt(0, 23);
+        const minutesAgo = randomInt(0, 59);
+        const timestamp = new Date(now - (daysAgo * 24 * 60 * 60 * 1000) - (hoursAgo * 60 * 60 * 1000) - (minutesAgo * 60 * 1000));
+        
+        const description = randomElement(bugDescriptions[type]);
+        
+        const bug = {
+            id: now + i,
+            timestamp: timestamp.toISOString(),
+            timeMinutes: timeMinutes,
+            timeFormatted: `${Math.floor(timeMinutes)} min ${Math.round((timeMinutes % 1) * 60)} seg (${timeMinutes.toFixed(2)} minutos)`,
+            type: type,
+            complexity: complexity,
+            documentation: documentation,
+            timeOfDay: timeOfDay,
+            project: project,
+            description: description
+        };
+        
+        generatedBugs.push(bug);
+    }
+    
+    // Agregar bugs generados al array principal
+    bugs.push(...generatedBugs);
+    saveBugsToStorage();
+    
+    // Actualizar vista
+    updateStats();
+    renderTable();
+    updateStatisticalAnalysis();
+    renderCharts();
+    
+    alert(` Se generaron ${numBugs} bugs de prueba exitosamente!\n\n Estadísticas actualizadas\n Gráficos generados\n\nTotal de bugs: ${bugs.length}`);
+}
