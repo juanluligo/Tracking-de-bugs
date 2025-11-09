@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCharts();
 });
 
-// ==================== CRONÓMETRO ====================
+// CRONÓMETRO 
 
 startBtn.addEventListener('click', startTimer);
 pauseBtn.addEventListener('click', pauseTimer);
@@ -137,7 +137,7 @@ function resetTimer() {
     timeDisplay.classList.remove('recording');
 }
 
-// ==================== FORMULARIO ====================
+// FORMULARIO 
 
 bugForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -366,7 +366,7 @@ function calculatePercentile(sortedArray, percentile) {
     return sortedArray[lower] * (1 - weight) + sortedArray[upper] * weight;
 }
 
-// ==================== GRÁFICOS ====================
+// GRÁFICOS 
 
 function renderCharts() {
     if (bugs.length === 0) {
@@ -764,7 +764,7 @@ function calculateAverageByCategory(category) {
     return { labels, values };
 }
 
-// ==================== EXPORTACIÓN ====================
+// EXPORTACIÓN DATOS REGISRADOS 
 
 exportCSVBtn.addEventListener('click', exportToCSV);
 exportJSONBtn.addEventListener('click', exportToJSON);
@@ -834,8 +834,6 @@ function clearAllData() {
         }
     }
 }
-
-// ==================== UTILIDADES ====================
 
 // Auto-detectar hora del día al cargar
 document.getElementById('timeOfDay').addEventListener('focus', function() {
