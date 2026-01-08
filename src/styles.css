@@ -41,7 +41,6 @@
     --radius-lg: 12px;
 }
 
-/* ==================== GLOBAL STYLES ==================== */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
     background-color: var(--bg-primary);
@@ -57,7 +56,7 @@ body {
     margin: 0 auto;
 }
 
-/* ==================== HEADER ==================== */
+/* HEADER */
 .header {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
@@ -106,7 +105,7 @@ body {
     font-size: 0.875rem;
 }
 
-/* ==================== TIMER ==================== */
+/* TIMER */
 .timer-section {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
@@ -155,7 +154,7 @@ body {
     display: inline-block;
 }
 
-/* ==================== BUTTONS ==================== */
+/* BUTTONS */
 .btn {
     padding: 0.625rem 1.25rem;
     border: 1px solid transparent;
@@ -240,7 +239,7 @@ body {
     background: #8957e5;
 }
 
-/* ==================== FORM ==================== */
+/* FORM */
 .form-section {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
@@ -335,7 +334,7 @@ body {
     border-top: 1px solid var(--border-primary);
 }
 
-/* ==================== STATS ==================== */
+/* STATS */
 .stats-section {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
@@ -392,7 +391,7 @@ body {
     font-weight: 500;
 }
 
-/* ==================== ANALYSIS ==================== */
+/* ANALYSIS */
 .analysis-section {
     margin: var(--spacing-2xl) 0;
     padding: var(--spacing-xl);
@@ -446,7 +445,7 @@ body {
     font-weight: 600;
 }
 
-/* ==================== CHARTS ==================== */
+/* CHARTS */
 .charts-section {
     margin: var(--spacing-2xl) 0;
 }
@@ -495,7 +494,7 @@ body {
     margin-bottom: 0;
 }
 
-/* ==================== TABLE ==================== */
+/* TABLE */
 .table-container {
     overflow-x: auto;
     margin-top: var(--spacing-2xl);
@@ -558,7 +557,7 @@ tbody tr:last-child td {
     border-bottom: none;
 }
 
-.empty-state {
+.empty-state td {
     text-align: center;
     color: var(--text-tertiary);
     font-style: italic;
@@ -582,7 +581,7 @@ tbody tr:last-child td {
     border-color: var(--accent-red);
 }
 
-/* ==================== FOOTER ==================== */
+/* FOOTER */
 .footer {
     text-align: center;
     color: var(--text-tertiary);
@@ -596,7 +595,7 @@ tbody tr:last-child td {
     margin: var(--spacing-xs) 0;
 }
 
-/* ==================== RESPONSIVE ==================== */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     body {
         padding: var(--spacing-md) var(--spacing-sm);
@@ -613,6 +612,7 @@ tbody tr:last-child td {
 
     .header .logo {
         width: 120px;
+        margin: 0 auto;
     }
 
     .header h1 {
@@ -666,7 +666,7 @@ tbody tr:last-child td {
     }
 }
 
-/* ==================== ANIMATIONS ==================== */
+/* ANIMATIONS */
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
@@ -680,7 +680,7 @@ tbody tr:last-child td {
     animation: pulse 2s ease-in-out infinite;
 }
 
-/* ==================== SCROLLBAR ==================== */
+/* SCROLLBAR */
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -700,7 +700,7 @@ tbody tr:last-child td {
     background: var(--text-tertiary);
 }
 
-/* ==================== SELECTION ==================== */
+/* SELECTION */
 ::selection {
     background: rgba(88, 166, 255, 0.3);
     color: var(--text-primary);

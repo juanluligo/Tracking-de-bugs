@@ -1,0 +1,32 @@
+{
+  "name": "estadistica",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Una herramienta web diseñada para registrar y analizar estadísticamente el tiempo de resolución de bugs durante el desarrollo de software. Proyecto desarrollado como parte del curso de Estadística y Probabilidad en la Universidad Autónoma del Cauca.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanluligo/Tracking-de-bugs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanluligo/Tracking-de-bugs/issues"
+  },
+  "homepage": "https://github.com/juanluligo/Tracking-de-bugs#readme",
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "react": "^19.2.3",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "vite": "^7.3.1"
+  }
+}
